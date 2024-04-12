@@ -14,19 +14,21 @@ datasource db {
 }
 
 model User {
-  id                 Int        @id @default(autoincrement())
-  institutionalEmail String     @unique
-  idNumber           String     @unique
-  firstName          String
-  middleName         String
-  lastName           String
-  gender             String
-  password           String
-  dateOfCreation     DateTime   @default(now())
-  Student            Student?
-  Teacher            Teacher?
-  Counselor          Counselor?
+  id                Int       @id @default(autoincrement())
+  institutionalEmail String    @unique
+  idNumber          String    @unique
+  firstName         String
+  middleName        String
+  lastName          String
+  gender            String
+  password          String
+  dateOfCreation    DateTime  @default(now())
+  role              String    @default("")
+  Student           Student? 
+  Teacher           Teacher? 
+  Counselor         Counselor? 
 }
+
 
 model Student {
   studentId     Int      @id @default(autoincrement())

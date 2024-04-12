@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 //imgs
-import registrationBg from "@/public/images/registrationBg.png";
+// import registrationBg from "@/public/images/bgs/registrationBg.png";
 
 // utils
 import TextInput from "@/components/ui/inputs/TextInput";
@@ -59,9 +59,18 @@ const Registration = () => {
   const [showRegistrationSuccessful, setShowRegistrationSuccessful] =
     useState(false);
 
+  // password validation function
+  const validatePassword = (password) => {
+    const regex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return regex.test(password);
+  };
+
   const handlePasswordChange = (e) => {
     const newPassword = e.target.value;
     setPassword(newPassword);
+
+    console.log(newPassword);
 
     if (!validatePassword(newPassword)) {
       // password is not valid
@@ -126,7 +135,7 @@ const Registration = () => {
     <div
       className="min-h-screen w-full"
       style={{
-        backgroundImage: `url(${registrationBg.src})`,
+        // backgroundImage: `url(${registrationBg.src})`,
         backgroundSize: "cover",
         backgroundPosition: "center right",
         backgroundAttachment: "fixed",
@@ -179,9 +188,7 @@ const Registration = () => {
                 <div className="w-full flex flex-row gap-x-6">
                   <InputPassword
                     password={password}
-                    setPassword={setPassword}
                     passwordCheck={passwordCheck}
-                    setPasswordCheck={setPasswordCheck}
                     showInvalidPassword={showInvalidPassword}
                     showPasswordDoNotMatch={showPasswordDoNotMatch}
                     handlePasswordChange={handlePasswordChange}
